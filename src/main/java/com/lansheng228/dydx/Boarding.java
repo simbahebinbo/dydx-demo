@@ -1,6 +1,5 @@
-package com.pyruz.dydx;
+package com.lansheng228.dydx;
 
-import org.json.JSONObject;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.ECDSASignature;
 import org.web3j.crypto.Hash;
@@ -14,7 +13,7 @@ import java.nio.ByteBuffer;
 public class Boarding {
 
     public static void main(String[] args) {
-        //pkDisplay();
+        pkDisplay();
         System.out.println();
         signDYDXMessage();
     }
@@ -28,8 +27,8 @@ public class Boarding {
 
 
     private static void signDYDXMessage() {
-        String privateKey1 = "a31967405f780ebd34835de20fe442d58cebae4700a95ddaa61c5a4c0b789bb2";
-        Credentials credentials = Credentials.create(privateKey1);
+        String privateKey = "a31967405f780ebd34835de20fe442d58cebae4700a95ddaa61c5a4c0b789bb2";
+        Credentials credentials = Credentials.create(privateKey);
         System.out.println("PrivateKey: " + credentials.getEcKeyPair().getPrivateKey());
         System.out.println("PublicKey: " + credentials.getEcKeyPair().getPublicKey());
         System.out.println("Address: " + credentials.getAddress());
@@ -42,19 +41,15 @@ public class Boarding {
     }
 
     private static void pkDisplay() {
-        String privateKey1 = "a31967405f780ebd34835de20fe442d58cebae4700a95ddaa61c5a4c0b789bb2";
-        Credentials credentials = Credentials.create(privateKey1);
+        String privateKey = "a31967405f780ebd34835de20fe442d58cebae4700a95ddaa61c5a4c0b789bb2";
+        Credentials credentials = Credentials.create(privateKey);
         System.out.println("pk:" + Numeric.toHexStringNoPrefix(credentials.getEcKeyPair().getPublicKey()));
-
-        JSONObject dydxSignMessage = new JSONObject();
-        dydxSignMessage.put("action", "DYDX-ONBOARDING");
-        dydxSignMessage.put("onlySignOn", "https://trade.dydx.exchange");
 
         MessageBean messageBean = new MessageBean("DYDX-ONBOARDING", "https://trade.dydx.exchange");
 
         System.out.println(messageBean);
 
-        String label = "\u0019Ethereum Signed Message:\n" + (messageBean.toString().getBytes().length) + messageBean.toString();
+        String label = "\u0019Ethereum Signed Message:\n" + (messageBean.toString().getBytes().length) + messageBean;
         System.out.println("hash:" + Hash.sha3String(label));
 
         ByteBuffer buffer = ByteBuffer.allocate(label.getBytes().length);

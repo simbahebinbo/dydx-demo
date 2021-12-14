@@ -1,4 +1,4 @@
-package com.pyruz.dydx;
+package com.lansheng228.dydx;
 /*
  * Copyright 2019 Web3 Labs Ltd.
  *
@@ -29,7 +29,6 @@ import java.math.BigInteger;
 import java.security.SignatureException;
 import java.util.Arrays;
 
-import static org.bouncycastle.util.BigIntegers.TWO;
 import static org.web3j.crypto.SignatureDataOperations.CHAIN_ID_INC;
 import static org.web3j.crypto.SignatureDataOperations.LOWER_REAL_V;
 import static org.web3j.utils.Assertions.verifyPrecondition;
@@ -277,9 +276,9 @@ public class Signer {
         if (v.equals(lowerRealV) || v.equals(lowerRealVPlus1)) {
             return v.subtract(lowerRealV).intValue();
         } else if (v.compareTo(chainIdInc) > 0) {
-            return v.subtract(BigInteger.valueOf(chainId).multiply(TWO)).add(chainIdInc).intValue();
+            return v.subtract(BigInteger.valueOf(chainId).multiply(BigInteger.TWO)).add(chainIdInc).intValue();
         } else {
-            throw new RuntimeException(String.format("Unsupported format exception", v));
+            throw new RuntimeException(String.format("Unsupported format exception %s", v));
         }
     }
 
