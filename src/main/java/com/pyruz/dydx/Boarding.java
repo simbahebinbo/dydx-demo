@@ -1,16 +1,15 @@
 package com.pyruz.dydx;
 
 import org.json.JSONObject;
-import org.telegram.api.engine.TelegramApi;
-import org.telegram.api.engine.storage.AbsApiState;
-import org.web3j.crypto.*;
-import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.methods.response.EthGetBalance;
+import org.web3j.crypto.Credentials;
+import org.web3j.crypto.ECDSASignature;
+import org.web3j.crypto.Hash;
+import org.web3j.crypto.Keys;
+import org.web3j.crypto.Sign;
 import org.web3j.utils.Numeric;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
-import java.security.SignatureException;
 
 public class Boarding {
 
@@ -37,7 +36,7 @@ public class Boarding {
 
         MessageBean messageBean = new MessageBean("DYDX-ONBOARDING", "https://trade.dydx.exchange");
 
-        System.out.println(messageBean.toString());
+        System.out.println(messageBean);
         System.out.println(getSignedData(Signer.signPrefixedMessage(messageBean.toString().getBytes(), credentials.getEcKeyPair())));
         System.out.println(getSignedData(Signer.signMessage(messageBean.toString().getBytes(), credentials.getEcKeyPair())));
     }

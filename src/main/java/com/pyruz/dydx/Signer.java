@@ -12,10 +12,6 @@ package com.pyruz.dydx;
  * specific language governing permissions and limitations under the License.
  */
 
-import java.math.BigInteger;
-import java.security.SignatureException;
-import java.util.Arrays;
-
 import org.bouncycastle.asn1.x9.X9ECParameters;
 import org.bouncycastle.asn1.x9.X9IntegerConverter;
 import org.bouncycastle.crypto.ec.CustomNamedCurves;
@@ -24,11 +20,14 @@ import org.bouncycastle.math.ec.ECAlgorithms;
 import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.math.ec.FixedPointCombMultiplier;
 import org.bouncycastle.math.ec.custom.sec.SecP256K1Curve;
-
 import org.web3j.crypto.ECDSASignature;
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.Hash;
 import org.web3j.utils.Numeric;
+
+import java.math.BigInteger;
+import java.security.SignatureException;
+import java.util.Arrays;
 
 import static org.bouncycastle.util.BigIntegers.TWO;
 import static org.web3j.crypto.SignatureDataOperations.CHAIN_ID_INC;
